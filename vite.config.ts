@@ -3,5 +3,8 @@ import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
   plugins: [vue()],
-  resolve: { alias: { "@": new URL("./src", import.meta.url).pathname } },
+  resolve: {
+    // decodeURIComponent keeps non-ASCII workspace paths usable by Rollup.
+    alias: { "@": decodeURIComponent(new URL("./src", import.meta.url).pathname) },
+  },
 });
